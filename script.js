@@ -399,28 +399,35 @@ document.addEventListener('DOMContentLoaded', () => {
             videoGrid.appendChild(item);
         });
 
-        // Add YouTube video for Rori
-        const roriYouTubeItem = document.createElement('div');
-        roriYouTubeItem.className = 'gallery-item';
-        roriYouTubeItem.innerHTML = `
-            <div style="position: relative; width: 100%; height: 100%; background: #000;">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/e2ma2rzqiSc?autoplay=0&mute=1&controls=1&modestbranding=1&rel=0" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    style="object-fit: cover; display: block;"
-                ></iframe>
-            </div>
-            <div style="padding: 10px; text-align: center; font-size: 0.8rem; letter-spacing: 1px; color: #aaa;">Rori</div>
-        `;
-        roriYouTubeItem.style.cursor = 'pointer';
-        roriYouTubeItem.onclick = () => {
-            window.open('https://youtu.be/e2ma2rzqiSc', '_blank');
-        };
-        videoGrid.appendChild(roriYouTubeItem);
+        // Add YouTube videos
+        const youtubeVideos = [
+            { id: 'e2ma2rzqiSc', title: 'Rori' },
+            { id: 'sKvqKBzI5zU', title: 'Video Destacado' }
+        ];
+
+        youtubeVideos.forEach(video => {
+            const youTubeItem = document.createElement('div');
+            youTubeItem.className = 'gallery-item';
+            youTubeItem.innerHTML = `
+                <div style="position: relative; width: 100%; height: 100%; background: #000;">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/${video.id}?autoplay=0&mute=1&controls=1&modestbranding=1&rel=0" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        style="object-fit: cover; display: block;"
+                    ></iframe>
+                </div>
+                <div style="padding: 10px; text-align: center; font-size: 0.8rem; letter-spacing: 1px; color: #aaa;">${video.title}</div>
+            `;
+            youTubeItem.style.cursor = 'pointer';
+            youTubeItem.onclick = () => {
+                window.open(`https://youtu.be/${video.id}`, '_blank');
+            };
+            videoGrid.appendChild(youTubeItem);
+        });
 
         // Instagram / External Videos List
         // Filtered Unique Links
