@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portafolio profesional de Rony Vivas. Fotografía artística, documental, publicitaria y realización audiovisual en Caracas. Especialista en procesos estenopeicos y narrativa visual.">
+    <meta name="keywords"
+        content="Rony Vivas, fotografo, realizador audiovisual, caracas, fotografia documental, estenopeica, publicidad, retratos">
+    <meta name="author" content="Rony Vivas">
+    <title>Rony Vivas | Fotógrafo y Realizador Audiovisual</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon%20logo-black.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <script src="gallery_data.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="author-v3">
+
+    <!-- Sticky Header -->
+    <header class="navbar v3 visible dark-mode" id="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <!-- Logo removed by user request -->
+            </div>
+            <ul class="nav-tabs">
+                <li class="active" data-tab="inicio">Inicio</li>
+                <li data-tab="video">Video</li>
+                <li data-tab="comercial">Comercial</li>
+                <li data-tab="retratos">Retratos</li>
+                <li data-tab="documental">Documental</li>
+                <li data-tab="trabajos-personales">Trabajos Personales</li>
+                <li data-tab="bio">Bio</li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <!-- Tab 0: Inicio / Hero -->
+        <section id="inicio" class="tab-content active section-inicio">
+            <div class="hero-v3">
+                <div id="hero-slideshow"></div>
+                <div class="hero-v3-content">
+                    <h1 id="hero-main-text">Rony Vivas<br><small>Fotógrafo - realizador audiovisual</small></h1>
+                </div>
+            </div>
+            <div class="about-brief" style="padding-top: 4rem; text-align: center;">
+                <p class="quote">"Entiendo la imagen como un documento y una forma de arqueología moderna."</p>
+            </div>
+        </section>
+
+        <!-- Tab: Video -->
+        <section id="video" class="tab-content">
+            <div class="section-header">
+                <h2>Video</h2>
+                <div class="separator"></div>
+            </div>
+            <div id="video-highlight-v3"></div>
+            <div id="video-grid-v3" class="gallery-grid"></div>
+            <div class="sales-footer">
+                <a href="mailto:ronyvivas@gmail.com?subject=Información Video" class="btn-primary v3">Información</a>
+            </div>
+        </section>
+
+        <!-- Tab: Comercial -->
+        <section id="comercial" class="tab-content">
+            <div class="section-header">
+                <h2>Comercial</h2>
+                <div class="separator"></div>
+            </div>
+
+            <div class="section-intro-text"
+                style="max-width: 900px; margin: -2rem auto 4rem; text-align: center; padding: 0 1rem;">
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #ccc;">
+                    "Capturo la identidad de tu empresa con una mirada profesional y humana. Desde retratos ejecutivos
+                    hasta espacios de trabajo, nos trasladamos a tu oficina con equipos propios para garantizar
+                    comodidad y resultados impecables. Fotos de alta calidad listas para elevar la presencia de tu
+                    marca."
+                </p>
+            </div>
+
+            <div class="sub-tabs-container">
+                <!-- Dynamically populated as visual windows -->
+            </div>
+            <!-- Sub-tab contents -->
+            <div id="subtab-comercial-avilas" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-comercial-corporativo" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-comercial-deportivas" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-comercial-menu" class="sub-tab-content">
+                <div class="project-highlight menu-highlight"
+                    style="text-align: center; display: flex; flex-direction: column; align-items: center; padding: 3rem;">
+                    <img src="assets/pedidosya-logo-png_seeklogo-363652.png" alt="Pedidos Ya"
+                        style="max-width: 300px; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.4rem; color: #fff; max-width: 700px; margin: 0;">Más de 300 restaurantes
+                        atendidos para Pedidos Ya Venezuela.</p>
+                </div>
+                <div class="subtab-gallery-root"></div>
+            </div>
+
+            <div class="sales-footer">
+                <a href="mailto:ronyvivas@gmail.com?subject=Información" class="btn-primary v3">Información</a>
+            </div>
+        </section>
+
+        <!-- Tab: Retratos -->
+        <section id="retratos" class="tab-content">
+            <div class="section-header">
+                <h2>Retratos</h2>
+                <div class="separator"></div>
+            </div>
+
+            <div class="section-intro-text"
+                style="max-width: 900px; margin: -2rem auto 4rem; text-align: center; padding: 0 1rem;">
+                <h3
+                    style="color: #fff; font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: 1px;">
+                    Retratos y Marca Personal</h3>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #ccc;">
+                    "Más que una simple imagen, busco capturar tu alma y esa esencia que te hace único. A través de una
+                    técnica de iluminación profesional y una dirección cercana, logro retratos auténticos que proyectan
+                    tu verdadera identidad. Mi enfoque es la fotografía con propósito: diseñada para que tu mejor
+                    versión sea la que hable por ti."
+                </p>
+            </div>
+
+            <div class="sub-tabs-container">
+                <!-- Dynamically populated -->
+            </div>
+
+            <div id="subtab-retratos-angel" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-retratos-indestructible" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-retratos-luz" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-retratos-estudio" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+        </section>
+
+        <!-- Tab: Documental -->
+        <section id="documental" class="tab-content">
+            <div class="section-header">
+                <h2>Documental</h2>
+                <div class="separator"></div>
+            </div>
+
+            <div class="section-intro-text"
+                style="max-width: 900px; margin: -2rem auto 4rem; text-align: center; padding: 0 1rem;">
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #ccc;">
+                    "Para mí, la fotografía documental es un acto de respeto y observación. Busco capturar la realidad
+                    sin artificios, dejando que sea la luz natural la que revele la honestidad de cada historia. Aquí la
+                    cámara no interviene, solo registra el rastro humano y la verdad de lo cotidiano."
+                </p>
+            </div>
+
+            <div class="sub-tabs-container">
+                <!-- Dynamically populated -->
+            </div>
+
+            <div id="subtab-doc-caruao" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-doc-tigre" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-doc-gallera" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-doc-madrid" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-doc-padre" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+            <div id="subtab-doc-yugo" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+        </section>
+
+        <!-- Tab: Trabajos Personales -->
+        <section id="trabajos-personales" class="tab-content">
+            <div class="section-header">
+                <h2>Trabajos Personales</h2>
+                <div class="separator"></div>
+            </div>
+
+            <div class="section-intro-text"
+                style="max-width: 900px; margin: -2rem auto 4rem; text-align: center; padding: 0 1rem;">
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #ccc;">
+                    "Este es mi espacio de libertad y exploración. Aquí uso la iluminación como un lenguaje para
+                    investigar ideas propias y dejarme llevar por la curiosidad. Son proyectos que nacen de la necesidad
+                    de crear, de mirar hacia adentro y de entender el mundo a través de mi propio lente."
+                </p>
+            </div>
+
+            <div class="sub-tabs-container">
+                <!-- Dynamically populated as visual windows -->
+            </div>
+
+            <div id="subtab-tp-diegesis" class="sub-tab-content">
+                <div class="project-highlight diegesis-highlight">
+                    <div class="highlight-content">
+                        <h3>Diégesis</h3>
+                        <p>"A través de la óptica elemental de una cámara estenopeica, esta serie explora las protestas
+                            de 2018 en Caracas desde una temporalidad distinta."</p>
+                        <div class="links-row">
+                            <a href="https://web.archive.org/web/20230320141659/https://prodavinci.com/rony-vivas-somos-una-sociedad-extremadamente-militarista/"
+                                target="_blank" class="btn-link">Ver Entrevista (Prodavinci)</a>
+                            <a href="https://www.youtube.com/watch?v=THEDdVDN7P8" target="_blank" class="btn-link"><i
+                                    class="fab fa-youtube"></i> Ver en YouTube</a>
+                        </div>
+                        <div class="video-embed-container">
+                            <iframe src="https://www.youtube.com/embed/THEDdVDN7P8" title="Diégesis - Rony Vivas"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="subtab-gallery-root"></div>
+            </div>
+
+            <div id="subtab-tp-estenopeicas" class="sub-tab-content">
+                <div class="project-highlight arqueologia-highlight">
+                    <div class="highlight-content">
+                        <h3>Arqueología de la Modernidad</h3>
+                        <p>Proyecto de investigación visual y fotolibro que recibió mención de honor en Galería Tres y
+                            3.</p>
+                        <div class="video-embed-container" style="aspect-ratio: auto; height: 600px;">
+                            <iframe src="assets/7 Trabajos personales/Estenopeicas/arqueologia.pdf" width="100%"
+                                height="100%"></iframe>
+                        </div>
+                        <div class="links-row" style="margin-top: 2rem;">
+                            <a href="assets/7 Trabajos personales/Estenopeicas/arqueologia.pdf" target="_blank" download
+                                class="btn-link">Descargar Libro PDF</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="subtab-gallery-root"></div>
+            </div>
+
+            <div id="subtab-tp-digital" class="sub-tab-content">
+                <div class="subtab-gallery-root"></div>
+            </div>
+        </section>
+
+        <!-- Tab 7: Bio (Page at the end) -->
+        <section id="bio" class="tab-content section-about">
+            <div class="about-flex">
+                <div class="about-text bio-full">
+                    <h2>Rony Vivas</h2>
+                    <p>Entiendo la imagen como un documento y una forma de arqueología moderna. Mi trayectoria como
+                        Licenciado en Artes (UCV) y Especialista en Gerencia de Comunicaciones Integradas (UNIMET)
+                        me permite transitar entre la fotografía y la realización audiovisual. En mi ejercicio
+                        profesional y docente, mi búsqueda constante es el equilibrio entre el arte y el oficio. Mi
+                        capacidad
+                        técnica abarca desde la creación artesanal con cámaras estenopeicas hasta la captura aérea
+                        con drones y equipos profesionales de video.</p>
+
+                    <div class="bio-meta">
+                        <div class="meta-item">
+                            <h4
+                                style="color:#fff; margin-bottom:0.5rem; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;">
+                                Contacto</h4>
+                            <a href="mailto:ronyvivas@gmail.com"
+                                style="color:var(--text-muted); text-decoration:none;"><i class="fas fa-envelope"></i>
+                                ronyvivas@gmail.com</a>
+                        </div>
+                        <div class="meta-item">
+                            <h4
+                                style="color:#fff; margin-bottom:0.5rem; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;">
+                                Social</h4>
+                            <a href="https://instagram.com/ronyvivas" target="_blank"
+                                style="color:var(--text-muted); text-decoration:none;"><i class="fab fa-instagram"></i>
+                                @ronyvivas</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-img video-profile-wrapper">
+                    <video id="profile-video" src="assets/static/video_landing.mp4" muted loop playsinline
+                        class="scroll-interactive-video"></video>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox v3 -->
+    <div id="lightbox-v3" class="lightbox-v3">
+        <span class="close-lb">&times;</span>
+        <button class="lb-prev"><i class="fas fa-chevron-left"></i></button>
+        <div class="lb-main">
+            <img id="lb-img-v3" src="" alt="">
+            <iframe id="lb-video-v3" src="" frameborder="0" allowfullscreen
+                style="display: none; width: 100%; height: 100%;"></iframe>
+            <video id="lb-local-video" controls autoplay
+                style="display: none; width: auto; height: auto; max-width: 90vw; max-height: 80vh; box-shadow: 0 0 50px rgba(0,0,0,0.8);"></video>
+            <div id="lb-caption" class="lb-caption"></div>
+        </div>
+        <button class="lb-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
