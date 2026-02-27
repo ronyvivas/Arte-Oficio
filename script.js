@@ -368,41 +368,10 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
 
-        // Render Local Videos (excluding main)
-        vids.filter(v => v !== main).forEach(v => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-
-            let captionText = v.split('/').pop().replace(/\.[^/.]+$/, "").replace(/_/g, " ");
-            // Custom Override for Rori
-            if (captionText.toLowerCase().includes('rori')) {
-                captionText = "Rori";
-            }
-
-            // Using autoplay muted loop for "silent view" in grid
-            item.innerHTML = `
-                <div style="position: relative; width: 100%; height: 100%;">
-                    <video autoplay loop muted playsinline width="100%" style="height: 100%; object-fit: cover; display: block;" src="${v}"></video>
-                    <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; pointer-events: none;">
-                        <i class="fas fa-volume-mute" style="color: white; font-size: 0.8rem;"></i>
-                    </div>
-                </div>
-                <div style="padding: 10px; text-align: center; font-size: 0.8rem; letter-spacing: 1px; color: #aaa;">${captionText}</div>
-            `;
-
-            // Add click to open in lightbox with sound
-            item.style.cursor = 'pointer';
-            item.onclick = () => {
-                window.openLightbox([{ type: 'local-video', src: v, caption: captionText }], 0);
-            };
-
-            videoGrid.appendChild(item);
-        });
 
         // Add YouTube videos
         const youtubeVideos = [
-            { id: 'e2ma2rzqiSc', title: 'Rori' },
-            { id: 'sKvqKBzI5zU', title: 'Video Destacado' }
+            { id: 'e2ma2rzqiSc', title: 'Rori' }
         ];
 
         youtubeVideos.forEach(video => {
