@@ -303,12 +303,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSlides = document.getElementById('hero-slideshow');
     if (heroSlides) {
         // Find the specific logos we want to include
-        const specificLogos = galleryAssets.filter(p => p.includes('Logo Rony'));
+        const specificLogos = galleryAssets.filter(p => p.toLowerCase().includes('logo_rony'));
 
         // Filter the rest of the pool, excluding the specific logos we already found (to avoid duplicates if logic changes)
         // and excluding other "logo-" files we don't want.
         const pool = galleryAssets.filter(p =>
-            !p.includes('Logo Rony') &&
+            !p.toLowerCase().includes('logo_rony') &&
             !p.toLowerCase().includes('logo-') &&
             (p.toLowerCase().endsWith('.jpg') || p.toLowerCase().endsWith('.jpeg') || p.toLowerCase().endsWith('.png'))
         );
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         shuffled.forEach((path, idx) => {
             const slide = document.createElement('div');
-            const isLogo = path.toLowerCase().includes('logo rony');
+            const isLogo = path.toLowerCase().includes('logo_rony');
             slide.className = `hero-slide ${idx === 0 ? 'active' : ''} ${isLogo ? 'hero-slide-logo' : ''}`;
             slide.style.backgroundImage = `url('${path}')`;
             heroSlides.appendChild(slide);
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoHighlight = document.getElementById('video-highlight-v3');
     if (videoGrid) {
         // Local Videos
-        const vids = galleryAssets.filter(p => (p.endsWith('.mp4') || p.endsWith('.mov')) && p.includes('1 Videos'));
+        const vids = galleryAssets.filter(p => (p.endsWith('.mp4') || p.endsWith('.mov')) && p.includes('1_videos'));
         const main = vids.find(v => v.includes('rony_vivas_fotografo'));
 
         if (main && videoHighlight) {
@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. Trabajos Personales
     setupVisualSubtabs('trabajos-personales', [
-        { id: 'tp-diegesis', slug: 'diegesis', name: 'Diegesis' },
+        { id: 'tp-diegesis', slug: 'diegesis', name: 'Diégesis' },
         { id: 'tp-estenopeicas', slug: 'estenopeicas', name: 'Estenopeicas', exclude: 'diegesis' },
         {
             id: 'tp-digital',
