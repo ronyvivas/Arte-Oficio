@@ -217,6 +217,7 @@ const galleryAssets = [
   "assets/4_documental/yugo_heredado/img_8611.jpg",
   "assets/4_documental/yugo_heredado/img_8668.jpg",
   "assets/4_documental/yugo_heredado/img_8717.jpg",
+  "assets/7_trabajos_personales/03_de_enero.jpg",
   "assets/7_trabajos_personales/estenopeicas/arqueologia.pdf",
   "assets/7_trabajos_personales/estenopeicas/caricuao_alt/15.jpg",
   "assets/7_trabajos_personales/estenopeicas/caricuao_alt/autoretrato.jpg",
