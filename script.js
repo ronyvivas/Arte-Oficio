@@ -8,12 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Helpers ---
-    const filterAsset = (slug, excludeSlug = null) => {
+    const filterAsset = (slug, excludeSlug = null, includeSlug = null) => {
         if (!slug) return [];
         // Even more robust normalization
         const clean = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
         const normSlug = clean(slug);
         const normExclude = excludeSlug ? clean(excludeSlug) : null;
+        const normInclude = includeSlug ? clean(includeSlug) : null;
 
         return galleryAssets.filter(p => {
             const normPath = clean(p);
@@ -22,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const isMedia = p.toLowerCase().endsWith('.mp4') || p.toLowerCase().endsWith('.mov') || p.toLowerCase().endsWith('.pdf');
             const isLogo = p.toLowerCase().includes('logo-');
             const isExcluded = normExclude && normPath.includes(normExclude);
-            return isMatch && !isMedia && !isLogo && !isExcluded;
+            const isIncluded = normInclude ? normPath.includes(normInclude) : true;
+            return isMatch && !isMedia && !isLogo && !isExcluded && isIncluded;
         });
     };
 
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuContainer.innerHTML = '';
         subtabConfigs.forEach(conf => {
             const images = filterAsset(conf.slug, conf.exclude);
-            if (images.length === 0) {
+            if (images.length === 0 && !conf.logo) {
                 console.warn(`No images for slug: ${conf.slug}`);
                 return;
             }
@@ -45,39 +47,48 @@ document.addEventListener('DOMContentLoaded', () => {
             // Create Visual Button
             const vBtn = document.createElement('div');
             vBtn.className = 'subtab-visual-btn';
-            vBtn.innerHTML = `
-                <div class="visual-btn-slideshow"></div>
-                <div class="visual-btn-overlay">
-                    <h3>${conf.name}</h3>
-                </div>
-            `;
+            
+            if (conf.logo) {
+                vBtn.innerHTML = `
+                    <div class="visual-btn-slideshow" style="background-color: #222; display: flex; align-items: center; justify-content: center;">
+                        <img src="${conf.logo}" alt="${conf.name}" style="max-width: 60%; max-height: 60%; object-fit: contain;">
+                    </div>
+                `;
+            } else {
+                vBtn.innerHTML = `
+                    <div class="visual-btn-slideshow"></div>
+                    <div class="visual-btn-overlay">
+                        <h3>${conf.name}</h3>
+                    </div>
+                `;
 
-            const slideshow = vBtn.querySelector('.visual-btn-slideshow');
-            const previewSet = images.slice(0, 8);
-            previewSet.forEach((path, idx) => {
-                const slide = document.createElement('div');
-                slide.className = `hero-slide ${idx === 0 ? 'active' : ''}`;
-                slide.style.backgroundImage = `url('${path}')`;
-                slideshow.appendChild(slide);
-            });
+                const slideshow = vBtn.querySelector('.visual-btn-slideshow');
+                const previewSet = images.slice(0, 8);
+                previewSet.forEach((path, idx) => {
+                    const slide = document.createElement('div');
+                    slide.className = `hero-slide ${idx === 0 ? 'active' : ''}`;
+                    slide.style.backgroundImage = `url('${path}')`;
+                    slideshow.appendChild(slide);
+                });
 
-            // Mini Slideshow Logic
-            let cur = 0;
-            const slides = slideshow.querySelectorAll('.hero-slide');
-            if (slides.length > 1) {
-                setInterval(() => {
-                    slides[cur].classList.remove('active');
-                    cur = (cur + 1) % slides.length;
-                    slides[cur].classList.add('active');
-                }, 3000 + Math.random() * 2000);
+                // Mini Slideshow Logic
+                let cur = 0;
+                const slides = slideshow.querySelectorAll('.hero-slide');
+                if (slides.length > 1) {
+                    setInterval(() => {
+                        slides[cur].classList.remove('active');
+                        cur = (cur + 1) % slides.length;
+                        slides[cur].classList.add('active');
+                    }, 3000 + Math.random() * 2000);
+                }
             }
 
-            vBtn.onclick = () => showSubtabGallery(sectionId, conf.id, images, conf.name, conf.children || []);
+            vBtn.onclick = () => showSubtabGallery(sectionId, conf.id, images, conf.name, conf.children || [], conf);
             menuContainer.appendChild(vBtn);
         });
     }
 
-    function showSubtabGallery(sectionId, subtabId, images, title, children = []) {
+    function showSubtabGallery(sectionId, subtabId, images, title, children = [], mainConf = {}) {
         const section = document.getElementById(sectionId);
         const menu = section.querySelector('.sub-tabs-container');
         const contents = section.querySelectorAll('.sub-tab-content');
@@ -103,23 +114,40 @@ document.addEventListener('DOMContentLoaded', () => {
         root.querySelector('.btn-back-galleries').onclick = () => {
             target.style.display = 'none';
             menu.style.display = 'grid';
+            
+            const salesBtn = section.querySelector('.sales-footer .btn-primary');
+            if (salesBtn) salesBtn.innerText = 'Información';
+            
             window.scrollTo({ top: section.offsetTop - 100, behavior: 'smooth' });
         };
+        
+        const salesBtn = section.querySelector('.sales-footer .btn-primary');
+        if (salesBtn) {
+            salesBtn.innerText = mainConf.salesBtnText || 'Información';
+        }
 
         const grid = root.querySelector('.gallery-grid');
         const subNav = root.querySelector('.sub-nav-bar');
 
-        const renderItems = (pool) => {
+        const renderItems = (pool, customConfig = {}) => {
             grid.innerHTML = '';
+            
+            // Adjust layout classes based on conf
+            const isCarousel = customConfig.isCarousel;
+            const isPano = customConfig.name === 'Panorámicas';
+            
+            grid.className = isCarousel ? 'custom-carousel' : (isPano ? 'pano-grid' : 'gallery-grid');
+
             const sortedImages = [...pool].sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
             sortedImages.forEach((path, idx) => {
                 const item = document.createElement('div');
-                item.className = 'gallery-item';
+                item.className = isCarousel ? 'carousel-item' : 'gallery-item';
                 const img = document.createElement('img');
                 img.src = path;
                 img.loading = "lazy";
                 img.onclick = () => window.openLightbox(sortedImages, idx);
                 item.appendChild(img);
+                
                 grid.appendChild(item);
             });
         };
@@ -132,14 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.onclick = () => {
                     subNav.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-                    renderItems(filterAsset(child.slug));
+                    renderItems(filterAsset(child.slug, child.exclude, child.includeSlug), child);
                 };
                 subNav.appendChild(btn);
             });
             // Auto-click first child
             subNav.querySelector('.sub-tab-btn').click();
         } else {
-            renderItems(images);
+            renderItems(images, mainConf);
         }
 
         window.scrollTo({ top: section.offsetTop - 50, behavior: 'smooth' });
@@ -468,7 +496,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: 'Regata', slug: 'Regata' }
             ]
         },
-        { id: 'comercial-menu', slug: 'Menu Pedidos Ya', name: 'Pedidos ya/Menú' },
+        { 
+            id: 'comercial-pedidosya', 
+            slug: 'fotos_de_menu_pedidos_ya', 
+            name: 'Fotos de Pedidos Ya',
+            logo: 'assets/pedidosya-logo-png_seeklogo-363652.png',
+            isCarousel: true,
+            salesBtnText: 'Agenda tu cita'
+        },
+        { 
+            id: 'comercial-roques', 
+            slug: 'Los Roques', 
+            name: 'Los Roques',
+            salesBtnText: 'Disponible para impresión',
+            children: [
+                { name: 'Panorámicas', slug: 'Los Roques', includeSlug: '-Pano' },
+                { name: 'Carrusel', slug: 'Los Roques', exclude: '-Pano', isCarousel: true }
+            ]
+        },
         { id: 'comercial-avilas', slug: 'Avilas', name: 'Ávilas' }
     ]);
 
