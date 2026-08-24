@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ronyvivas.com/sitemap.xml
